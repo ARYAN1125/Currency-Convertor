@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real-Time Currency Converter</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Currency Symbols Animation -->
+  <div class="currency-floating">
+    <span>$</span><span>€</span><span>₹</span><span>¥</span><span>₽</span>
+    <span>₩</span><span>₺</span><span>₪</span><span>₴</span><span>₦</span>
+    <span>₫</span><span>₱</span><span>฿</span><span>₡</span><span>₲</span>
+  </div>
+
+  <div class="converter">
+    <h1>💱 Currency Converter</h1>
+    <div class="input-group">
+      <input type="number" id="amount" placeholder="Enter amount" />
+      <select id="fromCurrency"></select>
+      <span>→</span>
+      <select id="toCurrency"></select>
+    </div>
+    <button onclick="convertCurrency()">Convert</button>
+    <h2 id="result">Converted amount will appear here</h2>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
