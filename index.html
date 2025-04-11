@@ -3,28 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Real-Time Currency Converter</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Currency Converter</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Currency Symbols Animation -->
-  <div class="currency-floating">
-    <span>$</span><span>€</span><span>₹</span><span>¥</span><span>₽</span>
-    <span>₩</span><span>₺</span><span>₪</span><span>₴</span><span>₦</span>
-    <span>₫</span><span>₱</span><span>฿</span><span>₡</span><span>₲</span>
+  <!-- Animated Background -->
+  <div class="background-3d">
+    <div class="currency-symbols">
+      <span>$</span><span>€</span><span>₹</span><span>£</span><span>¥</span><span>₩</span><span>₽</span><span>A$</span>
+    </div>
   </div>
 
-  <div class="converter">
-    <h1>💱 Currency Converter</h1>
-    <div class="input-group">
-      <input type="number" id="amount" placeholder="Enter amount" />
-      <select id="fromCurrency"></select>
-      <span>→</span>
-      <select id="toCurrency"></select>
+  <!-- Container -->
+  <div class="converter-container">
+    <h1>Currency Converter</h1>
+
+    <div class="currency-box">
+      <select id="from-currency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="INR">INR</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+      </select>
+
+      <input type="number" id="amount" placeholder="Amount" />
     </div>
+
+    <div class="currency-box">
+      <select id="to-currency">
+        <option value="INR">INR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+      </select>
+
+      <input type="text" id="converted-amount" readonly />
+    </div>
+
     <button onclick="convertCurrency()">Convert</button>
-    <h2 id="result">Converted amount will appear here</h2>
+
+    <button class="toggle-btn" onclick="toggleMode()">🌙 / ☀️</button>
   </div>
 
   <script src="script.js"></script>
