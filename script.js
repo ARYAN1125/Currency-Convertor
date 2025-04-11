@@ -1,44 +1,25 @@
-const apiKey = 'YOUR_API_KEY'; // Replace with your API key
-const fromCurrency = document.getElementById('fromCurrency');
-const toCurrency = document.getElementById('toCurrency');
-const result = document.getElementById('result');
-
-// Common Currencies
-const currencyList = ["USD", "EUR", "INR", "GBP", "JPY", "CAD", "AUD", "CNY", "RUB", "BRL", "KRW", "TRY", "ZAR", "MXN", "IDR", "SAR"];
-
-currencyList.forEach(currency => {
-  const optionFrom = new Option(currency, currency);
-  const optionTo = new Option(currency, currency);
-  fromCurrency.appendChild(optionFrom);
-  toCurrency.appendChild(optionTo);
-});
-
-fromCurrency.value = "USD";
-toCurrency.value = "INR";
-
 async function convertCurrency() {
   const amount = document.getElementById("amount").value;
-  const from = fromCurrency.value;
-  const to = toCurrency.value;
+  const fromCurrency = document.getElementById("from-currency").value;
+  const toCurrency = document.getElementById("to-currency").value;
 
-  if (!amount || amount <= 0) {
-    result.innerText = "⚠️ Enter a valid amount.";
+  if (amount === "") {
+    alert("Please enter an amount.");
     return;
   }
 
   try {
-    const url = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/${from}/${to}`;
-    const res = await fetch(url);
+    const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
     const data = await res.json();
-
-    if (data.result === "success") {
-      const rate = data.conversion_rate;
-      const converted = (amount * rate).toFixed(2);
-      result.innerText = `${amount} ${from} = ${converted} ${to}`;
-    } else {
-      result.innerText = "❌ Conversion failed. Try again.";
-    }
-  } catch (err) {
-    result.innerText = "⚠️ Error fetching data.";
+    const rate = data.rates[toCurrency];
+    const converted = (amount * rate).toFixed(2);
+    document.getElementById("converted-amount").value = converted;
+  } catch (error) {
+    alert("Error fetching currency data. Try again later.");
+    console.error(error);
   }
+}
+
+function toggleMode() {
+  document.body.classList.toggle("light-mode");
 }
